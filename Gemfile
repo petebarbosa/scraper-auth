@@ -51,6 +51,9 @@ group :development, :test do
   
   # Integrates the Rails testing helpers into RSpec [https://github.com/rspec/rspec-rails]
   gem 'rspec-rails'
+
+  # Use factory_bot_rails as a fixtures replacement with a straightforward definition syntax. [https://github.com/thoughtbot/factory_bot_rails]
+  gem 'factory_bot_rails'
 end
 
 group :development do
