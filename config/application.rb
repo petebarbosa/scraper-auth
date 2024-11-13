@@ -36,7 +36,17 @@ module CoreScrapingMicroApp
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.generators do |g|
+      g.skip_routes true
+      g.helpers false
+      g.test_famework :rspec, fixture: false
+      g.helper_specs false
+      g.contoller_specs false
+      g.system_tests false
+      g.view_specs false
+    end
+
+    # Gzip all responses
+    config.middleware.use Rack::Deflater
   end
 end
