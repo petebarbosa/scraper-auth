@@ -97,6 +97,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
+    dotenv (3.1.4)
     drb (2.2.1)
     erubi (1.13.0)
     factory_bot (6.5.0)
@@ -313,6 +314,7 @@ DEPENDENCIES
   brakeman
   debug
   devise
+  dotenv
   factory_bot_rails
   importmap-rails
   jbuilder

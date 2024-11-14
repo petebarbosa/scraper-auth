@@ -28,7 +28,7 @@ gem "tailwindcss-rails"
 gem "jbuilder"
 
 # Flexible authentication solution for Rails [https://github.com/heartcombo/devise]
-gem 'devise'
+gem "devise"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -51,16 +51,18 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-  
+
   # Integrates the Rails testing helpers into RSpec [https://github.com/rspec/rspec-rails]
-  gem 'rspec-rails'
+  gem "rspec-rails"
 
   # Use factory_bot_rails as a fixtures replacement with a straightforward definition syntax. [https://github.com/thoughtbot/factory_bot_rails]
-  gem 'factory_bot_rails'
+  gem "factory_bot_rails"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-end
 
+  # dotnev because yes
+  gem "dotenv"
+end
