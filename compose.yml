@@ -1,0 +1,39 @@
+services:
+  mysql:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - 3306:3306 
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+        - database-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 5
+
+  scrapper-core:
+    build: .
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - 3000:3000
+    networks:
+      - scrapper-network
+    environment:
+      DATABASE_URL: mysql2://${MYSQL_USER}:${MYSQL_PASSWORD}@localhost:3306/${MYSQL_DATABASE}
+      SECRET_KEY_BASE: ${RAILS_MASTER_KEY}
+
+volumes:
+  mysql_data:
+
+networks:
+  database-network:
+  scrapper-network:

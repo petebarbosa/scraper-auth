@@ -13,9 +13,10 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
-  host: <%= ENV.fetch("DB_HOST") { "localhost" } %>
+  username: <%= ENV.fetch("MYSQL_USER") %> 
+  password: <%= ENV.fetch("MYSQL_PASSWORD") %>
+  host: <%= ENV.fetch("DB_HOST") { "127.0.0.1" } %>
+  port: 3306
 
 development:
   <<: *default
@@ -45,11 +46,8 @@ test:
 #   production:
 #     url: <%= ENV["MY_APP_DATABASE_URL"] %>
 #
-# Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
-# for a full overview on how database connection configuration can be specified.
+# Read http on how database connection configuration can be specified.
 #
 production:
   <<: *default
   database: scrapper_core_production
-  username: scrapper_core
-  password: <%= ENV["CORE_SCRAPING_MICRO_APP_DATABASE_PASSWORD"] %>
