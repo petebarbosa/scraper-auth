@@ -1,6 +1,9 @@
 <header class="flex justify-between my-4 mx-8">
   <h1>Scrapper</h1>
-  <div>
-    <%= link_to "Home", root_path %>
+  <div class="flex justify-evenly space-x-4">
+    <%= button_to "Home", root_path %>
+    <% if user_signed_in? %>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+    <% end %>
   </div>
 </header>
