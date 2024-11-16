@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
   allow_browser versions: :modern
 
   before_action :configure_permitted_parameters, if: :devise_controller?

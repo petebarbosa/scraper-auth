@@ -36,6 +36,16 @@ module ScrapperCore
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    config.api_only = true
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "*"
+        resource "*",
+          headers: :any,
+          methods: [ :get, :post, :put, :patch, :delete, :options, :head ]
+      end
+    end
+
     config.generators do |g|
       g.skip_routes true
       g.helpers false
@@ -44,6 +54,7 @@ module ScrapperCore
       g.contoller_specs false
       g.system_tests false
       g.view_specs false
+      g.views false
     end
 
     # Gzip all responses
