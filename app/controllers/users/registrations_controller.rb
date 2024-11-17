@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  include RackSessionFix
+
+  skip_before_action :authenticate_user!
+
   respond_to :json
 
   private
 
   def respond_with(resource, _opts = {})
+    logger.debug "resource"
     if request.method == "POST" && resource.persisted?
       render json: {
         status: { code: 200, message: "Signed up sucessfully." },
