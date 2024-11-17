@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
 
+  get "current_user/", to: "api/v1/current_user#index"
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/*
